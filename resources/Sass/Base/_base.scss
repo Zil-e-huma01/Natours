@@ -1,0 +1,42 @@
+*,
+*::after,
+*::before{
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+html{                   /* we decalre root font size for rem in html selector */
+    font-size: 62.5%;        /* 1 rem = 10px  .... divide 10/16 to convert px into %*/
+                            /*The default font size provided by browser is 16px so if we write
+                      100% over here itmaens full 16px. This is done so that uesr can change it according to its ease */
+    
+   
+    //there order matter allot . If there are two conflicting media queries the second one applies
+    //larger one before tan smaller one
+
+    @include respond(tab-land){   //width < 1200
+        font-size: 56.9%;        //1rem = 9px  ----  9/16 = 56.9% 
+    }
+
+    @include respond(tab-port){   //width < 900 ----- this also apply for phones
+        font-size: 50%;      //1rem = 8px  ----  8/16 = 50% 
+    }
+    
+    @include respond(big-desktop){
+        font-size: 75%;       //1rem = 12px ----- 12/16= 75%
+    }
+}
+
+body{
+    box-sizing: border-box;
+    padding: 3rem;
+
+    @include respond(tab-port){  
+        padding: 0;       
+    }
+}
+
+::selection{
+    background-color: $color-primary;
+    color: $color-white;
+}

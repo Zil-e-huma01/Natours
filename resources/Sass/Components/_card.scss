@@ -1,0 +1,203 @@
+.card {
+
+    //for functionality
+    perspective: 150rem;   //lower value gives more dramatic perspecyive, use hit trial method 
+    -moz-perspective: 150rem;   //to make this perspective work on fire fox
+    position: relative;
+    height: 52rem;  //due to the absolute position the child elements collapse and their height is lost so we give
+                    //same height to the parent element for perspective to appear (clear fix works with floats )
+
+    &__side {
+        
+        height: 52rem;
+        transition: all 0.8s ease;  //used ease(Transition timing function) to make our transitin look smother
+        position: absolute;
+        top: 0;      //defining absolute position 
+        left: 0;
+        width: 100%;  //so the cards are fully viewed because else they start to fit according to each other size
+        -webkit-backface-visibility: hidden;   //preface required for safri 
+        backface-visibility: hidden; //hides the back part of the element so we see the text onthe back part in right way
+        border-radius: 3px;
+        overflow: hidden;   //so rounded corners are visible even after we add in image
+        box-shadow: 0 1.5rem 4rem rgba($color-black, .15);
+
+    &--front {
+        background-color: $color-white;
+    }
+
+    &--back {
+        transform: rotateY(180deg);  //to keeep it in back we have it already rotated at 180 degrees
+
+        &--1{
+            background-image: linear-gradient(to right bottom, $color-secondary-light, $color-secondary-dark);
+        }
+        &--2{
+            background-image: linear-gradient(to right bottom, $color-primary-light, $color-primary-dark);
+        }
+        &--3{
+            background-image: linear-gradient(to right bottom, $color-tertiary-light, $color-tertiary-dark);
+        }
+    }
+    }
+
+    &:hover &__side--front {   //when we hover the card , card side is transformed
+        transform: rotateY(-180deg);
+    }
+
+    &:hover &__side--back {   //when we hover the card , card side is transformed
+        transform: rotateY(0deg);
+    }
+
+    
+    //front side styling
+    &__picture {
+        background-size: cover;
+        height: 23rem;
+        background-blend-mode: screen;
+        -webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%); //to make this work in other browswes we use this prefix
+        clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
+
+        &--1{
+            background-image:linear-gradient(to right bottom, $color-secondary-light, $color-secondary-dark), url(/resources/img/nat-5.jpg);
+        }
+        &--2{
+            background-image: linear-gradient(to right bottom, $color-primary-light, $color-primary-dark), url(/resources/img/nat-6.jpg);
+        }
+        &--3{
+            background-image: linear-gradient(to right bottom, $color-tertiary-light, $color-tertiary-dark), url(/resources/img/nat-7.jpg);
+        }
+    }
+
+    &__heading {
+        font-size: 2.8rem;
+        font-weight: 300;
+        text-transform: uppercase;
+        text-align: right;
+        color: $color-white;
+        position: absolute;
+        top: 12rem;
+        right: 2rem;
+        width: 75%;
+
+    }
+    &__heading--span {
+        padding: 1rem 1.5rem;
+        -webkit-box-decoration-break: clone;  //to treat the text as 2 different entities as to have space at the end of each
+        box-decoration-break: clone;
+        &--1 {
+            background-image: linear-gradient(to right bottom, 
+            rgba($color-secondary-light, 0.85), 
+            rgba($color-secondary-dark, 0.85));
+        }
+        &--2 {
+            background-image: linear-gradient(to right bottom, 
+            rgba($color-primary-light, 0.85), 
+            rgba($color-primary-dark, 0.85));
+        }
+        &--3 {
+            background-image: linear-gradient(to right bottom, 
+            rgba($color-tertiary-light, 0.85), 
+            rgba($color-tertiary-dark, 0.85));
+        }
+    }
+
+    &__details {
+        padding: 3rem;
+        ul {
+            list-style: none;
+            width: 80%;
+            margin: 0 auto;  //simplest way to place block element in another block in center
+
+            li {
+                text-align: center;
+                font-size: 1.5rem;
+                padding: 1rem;
+                
+                &:not(:last-child) {
+                    border-bottom: 1px solid $color-grey-light-2;
+                }
+            }
+        }
+    }
+
+    //Back side styling
+    &__cta {
+        text-align: center;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 90%;
+    }
+    &__price-box {
+        text-align: center;
+        color: $color-white;
+        margin-bottom: 8rem;
+    }
+
+    &__price-only {
+        font-size: 1.5rem;
+        text-transform: uppercase;
+    }
+
+    &__price-value {
+        font-size: 6rem;
+        font-weight: 100;
+    }
+
+    //MEDIA QUERRY
+
+    //@include respond(tab-port) {
+     
+ @media only screen and (max-width: 56.25em) ,
+        only screen and (hover: none) {    // this will be applied to screen bigger than declared screen size but where we can not hover e.g i pad
+            height: auto;  //we want the both sides to appear on front
+            background-color: $color-white;
+            border-radius: 3px;
+            box-shadow: 0 1.5rem 4rem rgba($color-black, .15);
+        
+            &__side {
+                
+                height: auto;
+                position: relative;
+                overflow: hidden;   //so rounded corners are visible even after we add in image
+        
+        
+            &--back {
+                transform: rotateY(0);  //we dont want to rotate it at all
+                clip-path: polygon(0 15%, 100% 0, 100% 100%, 0 100%);
+                z-index: 1000;
+        
+            }
+            }
+        
+            &:hover &__side--front {   //when we hover the card , card side is transformed
+                transform: rotateY(0);
+            }
+        
+            &__details {
+                padding: 1rem 3rem;
+            }
+        
+            //Back side styling
+            &__cta {
+                position: relative;
+                top: 0;
+                left: 0;
+                transform: translate(0);
+                width: 110%;
+                padding: 7rem 4rem 4rem 4rem ;
+            }
+            &__price-box {
+                margin-bottom: 3rem;
+            }
+        
+            &__price-value {
+                font-size: 4rem;
+            }
+            }
+    
+
+}

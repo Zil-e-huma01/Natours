@@ -1,0 +1,24 @@
+@import "../Natour/resources/Sass/abstracts/functions";
+@import "../Natour/resources/Sass/abstracts/mixins";
+@import "../Natour/resources/Sass/abstracts/variables";
+
+@import "../Natour/resources/Sass/Base/animation";
+@import "../Natour/resources/Sass/Base/base";
+@import "../Natour/resources/Sass/Base/typography";
+@import "../Natour/resources/Sass/Base/utility";
+
+@import "../Natour/resources/Sass/Components/btn";
+@import "../Natour/resources/Sass/Components/composition";
+@import "../Natour/resources/Sass/Components/fearure-box";
+@import "../Natour/resources/Sass/Components/card";
+@import "../Natour/resources/Sass/Components/story";
+@import "../Natour/resources/Sass/Components/bg-video";
+@import "../Natour/resources/Sass/Components/form";
+@import "../Natour/resources/Sass/Components/popup";
+
+@import "../Natour/resources/Sass/Layout/grid";
+@import "../Natour/resources/Sass/Layout/header";
+@import "../Natour/resources/Sass/Layout/footer";
+@import "../Natour/resources/Sass/Layout/navigation";
+
+@import "./resources/Sass/pages/home";

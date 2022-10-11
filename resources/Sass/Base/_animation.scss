@@ -1,0 +1,39 @@
+@keyframes moveInLeft{
+    0%{
+        opacity: 0;
+        transform: translateX(-10rem); /* we can use rotate instead of tranlate with deg as a unit for circular motion animations*/
+    }
+    80%{
+        transform: translateX(1rem);
+    }
+    100%{
+        opacity: 100%;
+        transform: translate(0);
+    }
+}
+@keyframes moveInRight{
+    0%{
+        opacity: 0;
+        transform: translateX(10rem);   
+    }
+    80%{
+        transform: translateX(-1rem);
+    }
+    100%{
+        opacity: 100%;
+        transform: translate(0);
+    }
+}
+@keyframes moveInBtn{
+    0%{
+        opacity: 0;
+        transform: translateY(3rem);   
+    }
+    80%{
+        transform: translateX(5rem);
+    }
+    100%{
+        opacity: 100%;
+        transform: translate(0);
+    }
+}

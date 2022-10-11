@@ -1,0 +1,70 @@
+.row{
+    max-width: $grid-width; //1140 px    (max-width means that if the space available i.e the size of viewport is smaller than
+                        //  114rem than it simply fills that 100% of space available
+
+        @include respond(tab-port) {
+            max-width: 50rem;  
+            padding: 0 3rem;
+        }
+
+    margin: 0 auto;                // trick to center these rows (center a block element inside an other block element)
+
+    //this will apply to every thing other than lst child to have some distance/ seperation in between rows
+    &:not(:last-child){                              
+        margin-bottom: $gutter-vertival;   
+        
+        @include respond(tab-port) {
+            margin-bottom: $gutter-vertival-small;  
+        }
+    }
+
+    @include clearfix;
+    
+    //this will select all the classes starting with name col-
+    // ^ is used to specift starting with is this, or else you can use = only
+    //if you use * it means apply to class whose name contain col- 
+    // if you use $ it means any class that ends with col-
+    //it is called attribute selector -- any atribute can be selected such as alt href..
+    [class^="col-"] {      
+        float: left;
+
+        &:not(:last-child) {
+            margin-right: $gutter-hoizontal;
+
+            @include respond(tab-port) {
+                margin-right: 0;  
+                margin-bottom: $gutter-vertival-small;
+            }
+        }
+
+        @include respond(tab-port) {
+            width: 100% !important;  
+        }
+    }
+
+    .col-1-of-2{                                             //we did this nesting because these cols always come in a row
+        width: calc((100% - #{$gutter-hoizontal}) /2);        //we add this #{} in calc function to use a variable in it
+        
+    }
+
+    .col-1-of-3{
+        width: calc((100% - 2 * #{$gutter-hoizontal}) / 3);
+    }
+
+    .col-2-of-3{
+        width: calc(2 * ((100% - 2 * #{$gutter-hoizontal}) / 3) + #{$gutter-hoizontal});
+    }
+
+    .col-1-of-4{
+        width: calc((100% - 3 * #{$gutter-hoizontal}) / 4);
+    }
+
+    .col-2-of-4{
+        width: calc(2 * ((100% - 3 * #{$gutter-hoizontal}) / 4) + #{$gutter-hoizontal})  ;
+    }
+
+    .col-3-of-4{
+        width: calc(3 * ((100% - 3 * #{$gutter-hoizontal}) / 4) + 2* #{$gutter-hoizontal});
+    }
+
+}
